@@ -13,9 +13,6 @@ This repository contains a Django-based web application designed as part of a da
 2. [Project Setup](#project-setup)
 3. [Environment Variables](#environment-variables)
 4. [Usage](#usage)
-5. [Project Structure](#project-structure)
-6. [Contributing](#contributing)
-7. [License](#license)
 
 ---
 
