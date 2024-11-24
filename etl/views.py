@@ -5,6 +5,7 @@ from django.db import connection
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout
 from django.shortcuts import redirect
+from .forms import UserRegistrationForm
 
 
 @login_required
@@ -28,3 +29,17 @@ def custom_logout(request):
 # def get_transactions(request, client_id):
 #     transactions = Transaction.objects.filter(client_id=client_id)
 #     return JsonResponse(list(transactions.values()), safe=False)
+
+
+def register(request):
+    if request.method == 'POST':
+        form = UserRegistrationForm(request.POST)
+        if form.is_valid():
+            user = form.save(commit=False)
+            user.set_password(form.cleaned_data['password'])
+            user.save()
+            return redirect('login')  # Redirect to the login page after successful registration
+    else:
+        form = UserRegistrationForm()
+
+    return render(request, 'register.html', {'form': form})
